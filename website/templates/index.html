@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <link rel="icon" type="image/png" sizes="32x32" href="/static/imgs/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/static/imgs/favicon-16x16.png" />
+
+        <title>Shade Url Shortener</title>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
+        <link rel="stylesheet" href="/static/styles.css" />
+        <script src="/static/script.js" defer></script>
+    </head>
+    <body>
+        <header class="header">
+            <a href="/" class="header__title">Shade Url Shortener</a>
+        </header>
+
+        <main class="main">
+            <div class="main--illustration">
+                <img
+                    src="/static/imgs/link_illustration.png"
+                    alt="Share Url Illustration"
+                    class="main--illustration__image"
+                />
+            </div>
+
+            <div class="main--content">
+                <h1 class="main--content__title">Shorten your link.</h1>
+                <p class="main--content__description"><span>Share it</span> with people all around the world!</p>
+
+                <form action="/" method="POST" autocomplete="off" class="main--content--form">
+                    <div class="main--content--form__input-wrapper">
+                        <input
+                            id="url"
+                            name="url"
+                            type="text"
+                            required="required"
+                            pattern="[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)"
+                            value="{{url}}"
+                        />
+                        <span>Your url</span>
+                    </div>
+
+                    <input type="submit" value="Generate" class="main--content--form__submit" />
+                </form>
+
+                {% if shortened_url %}
+                <div class="main--content--result">
+                    <p class="main--content--result__title">Here you go!</p>
+                    <div id="result" class="main--content--result__url-wrapper">
+                        <input
+                            id="outputUrl"
+                            type="text"
+                            disabled
+                            value="{{shortened_url}}"
+                            class="main--content--result__url"
+                        />
+                        <img id="clipboard" src="/static/imgs/clipboard.svg" alt="Copy to Clipboard" />
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p class="footer__made-by">
+                Made with <span>❤</span> by <a href="https://github.com/ShadeDev7">Agustín Arnoldi</a>
+            </p>
+        </footer>
+    </body>
+</html>
